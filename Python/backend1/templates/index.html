@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HoloNova | 3D Screenless Display System</title>
+
+
+    <style>
+
+        /* ==================================================
+           RESET
+        ================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #111111;
+        }
+
+
+
+        /* ==================================================
+           NAVBAR
+        ================================================== */
+
+        .navbar {
+
+            width: 100%;
+            min-height: 78px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 14px 7%;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            border-bottom: 1px solid #e8e8e8;
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+
+        /* ==================================================
+           BRAND / LOGO
+        ================================================== */
+
+        .brand {
+
+            display: flex;
+            align-items: center;
+
+            gap: 11px;
+
+            color: #111111;
+
+            text-decoration: none;
+        }
+
+
+        .brand-logo {
+
+            width: 48px;
+            height: 48px;
+
+            object-fit: contain;
+        }
+
+
+        .brand-text {
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .brand-name {
+
+            font-size: 23px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.3px;
+        }
+
+
+        .brand-small {
+
+            margin-top: 2px;
+
+            color: #777777;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+
+        /* ==================================================
+           NAVIGATION LINKS
+        ================================================== */
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            list-style: none;
+        }
+
+
+        .nav-links a {
+
+            display: inline-block;
+
+            padding: 10px 17px;
+
+            color: #333333;
+
+            background: transparent;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            border-radius: 7px;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+
+        /* BLACK ONLY WHEN CURSOR IS OVER ITEM */
+
+        .nav-links a:hover {
+
+            background: #111111;
+
+            color: #ffffff;
+
+            transform: translateY(-1px);
+        }
+
+
+
+        /* ==================================================
+           HERO
+        ================================================== */
+
+        .hero {
+
+            min-height: 72vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 75px 20px 60px;
+
+            text-align: center;
+        }
+
+
+        .hero-content {
+
+            width: 100%;
+
+            max-width: 900px;
+        }
+
+
+        .hero-logo {
+
+            width: 125px;
+
+            height: 125px;
+
+            object-fit: contain;
+
+            margin-bottom: 20px;
+        }
+
+
+        .badge {
+
+            display: inline-block;
+
+            margin-bottom: 25px;
+
+            padding: 8px 15px;
+
+            border: 1px solid #dddddd;
+
+            border-radius: 100px;
+
+            color: #666666;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            letter-spacing: 1.3px;
+        }
+
+
+        .hero h1 {
+
+            margin-bottom: 16px;
+
+            color: #111111;
+
+            font-size: clamp(58px, 9vw, 96px);
+
+            font-weight: 700;
+
+            line-height: 0.95;
+
+            letter-spacing: -4px;
+        }
+
+
+        .tagline {
+
+            margin-bottom: 24px;
+
+            color: #333333;
+
+            font-size: clamp(20px, 3vw, 27px);
+
+            font-weight: 400;
+
+            letter-spacing: 1.2px;
+        }
+
+
+        .hero-description {
+
+            max-width: 620px;
+
+            margin: 0 auto;
+
+            color: #777777;
+
+            font-size: 16px;
+
+            line-height: 1.75;
+        }
+
+
+
+        /* ==================================================
+           HERO BUTTONS
+        ================================================== */
+
+        .hero-buttons {
+
+            margin-top: 35px;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 13px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .button {
+
+            display: inline-block;
+
+            min-width: 155px;
+
+            padding: 14px 24px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.2s ease;
+        }
+
+
+        .button-primary {
+
+            background: #111111;
+
+            color: #ffffff;
+
+            border: 1px solid #111111;
+        }
+
+
+        .button-secondary {
+
+            background: #ffffff;
+
+            color: #111111;
+
+            border: 1px solid #cccccc;
+        }
+
+
+        .button:hover {
+
+            transform: translateY(-2px);
+        }
+
+
+        .button-primary:hover {
+
+            background: #333333;
+        }
+
+
+        .button-secondary:hover {
+
+            background: #f7f7f7;
+        }
+
+
+
+        /* ==================================================
+           WORKFLOW
+        ================================================== */
+
+        .workflow-section {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 40px 30px 85px;
+        }
+
+
+        .section-heading {
+
+            margin-bottom: 35px;
+
+            text-align: center;
+        }
+
+
+        .section-heading span {
+
+            color: #999999;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+        }
+
+
+        .section-heading h2 {
+
+            margin-top: 10px;
+
+            color: #111111;
+
+            font-size: 30px;
+        }
+
+
+        .workflow {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .workflow-card {
+
+            min-height: 190px;
+
+            padding: 28px;
+
+            background: #fafafa;
+
+            border: 1px solid #e7e7e7;
+
+            border-radius: 14px;
+
+            transition: 0.2s ease;
+        }
+
+
+        .workflow-card:hover {
+
+            transform: translateY(-4px);
+
+            border-color: #bbbbbb;
+        }
+
+
+        .step {
+
+            margin-bottom: 30px;
+
+            color: #999999;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .workflow-card h3 {
+
+            margin-bottom: 10px;
+
+            color: #111111;
+
+            font-size: 19px;
+        }
+
+
+        .workflow-card p {
+
+            color: #777777;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+
+        /* ==================================================
+           TECHNOLOGY STRIP
+        ================================================== */
+
+        .system-section {
+
+            max-width: 1100px;
+
+            margin: 0 auto 70px;
+
+            padding: 22px 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 45px;
+
+            flex-wrap: wrap;
+
+            border-top: 1px solid #eeeeee;
+
+            border-bottom: 1px solid #eeeeee;
+        }
+
+
+        .system-item {
+
+            color: #666666;
+
+            font-size: 13px;
+        }
+
+
+        .status-dot {
+
+            display: inline-block;
+
+            width: 7px;
+
+            height: 7px;
+
+            margin-right: 7px;
+
+            background: #111111;
+
+            border-radius: 50%;
+        }
+
+
+
+        /* ==================================================
+           CTA
+        ================================================== */
+
+        .cta {
+
+            padding: 20px 20px 90px;
+
+            text-align: center;
+        }
+
+
+        .cta-box {
+
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 55px 25px;
+
+            background: #111111;
+
+            color: #ffffff;
+
+            border-radius: 18px;
+        }
+
+
+        .cta-box h2 {
+
+            margin-bottom: 12px;
+
+            font-size: 30px;
+        }
+
+
+        .cta-box p {
+
+            margin-bottom: 25px;
+
+            color: #bbbbbb;
+
+            font-size: 15px;
+        }
+
+
+        .cta-button {
+
+            display: inline-block;
+
+            padding: 13px 24px;
+
+            background: #ffffff;
+
+            color: #111111;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: 0.2s ease;
+        }
+
+
+        .cta-button:hover {
+
+            transform: translateY(-2px);
+
+            background: #eeeeee;
+        }
+
+
+
+        /* ==================================================
+           FOOTER
+        ================================================== */
+
+        footer {
+
+            padding: 28px 20px;
+
+            border-top: 1px solid #eeeeee;
+
+            text-align: center;
+
+            color: #888888;
+
+            font-size: 12px;
+        }
+
+
+
+        /* ==================================================
+           MOBILE
+        ================================================== */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 17px;
+
+                padding: 15px 20px;
+            }
+
+
+            .nav-links {
+
+                justify-content: center;
+
+                gap: 5px;
+
+                flex-wrap: wrap;
+            }
+
+
+            .nav-links a {
+
+                padding: 8px 12px;
+            }
+
+
+            .hero {
+
+                padding-top: 55px;
+            }
+
+
+            .hero h1 {
+
+                letter-spacing: -2px;
+            }
+
+
+            .hero-logo {
+
+                width: 100px;
+
+                height: 100px;
+            }
+
+
+            .workflow {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .system-section {
+
+                gap: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     NAVBAR
+====================================================== -->
+
+<nav class="navbar">
+
+
+    <a
+        href="/"
+        class="brand"
+    >
+
+
+        <img
+            src="/static/images/holonova-logo.png"
+            alt="HoloNova Logo"
+            class="brand-logo"
+        >
+
+
+        <div class="brand-text">
+
+
+            <span class="brand-name">
+
+                HoloNova
+
+            </span>
+
+
+            <span class="brand-small">
+
+                3D Screenless Display
+
+            </span>
+
+
+        </div>
+
+
+    </a>
+
+
+
+    <!--
+        ORDER:
+        HOME
+        CREATE
+        DASHBOARD
+        GALLERY
+        ABOUT
+    -->
+
+    <ul class="nav-links">
+
+
+        <li>
+
+            <a href="/">
+
+                Home
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="/upload-page">
+
+                Create
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="/dashboard">
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="/gallery">
+
+                Gallery
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="/about">
+
+                About
+
+            </a>
+
+        </li>
+
+
+    </ul>
+
+
+</nav>
+
+
+
+<!-- ======================================================
+     HERO
+====================================================== -->
+
+<section class="hero">
+
+
+    <div class="hero-content">
+
+
+        <img
+            src="/static/images/holonova-logo.png"
+            alt="HoloNova Logo"
+            class="hero-logo"
+        >
+
+
+        <br>
+
+
+        <div class="badge">
+
+            HOLOGRAPHIC DISPLAY PLATFORM
+
+        </div>
+
+
+
+        <h1>
+
+            HoloNova
+
+        </h1>
+
+
+
+        <h2 class="tagline">
+
+            3D Screenless Display System
+
+        </h2>
+
+
+
+        <p class="hero-description">
+
+            Transform digital images into RGB LED hologram
+            data, preview the generated output and manage
+            holograms through one integrated web application.
+
+        </p>
+
+
+
+        <div class="hero-buttons">
+
+
+            <a
+                href="/upload-page"
+                class="button button-primary"
+            >
+
+                Create Hologram
+
+            </a>
+
+
+
+            <a
+                href="/dashboard"
+                class="button button-secondary"
+            >
+
+                View Dashboard
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ======================================================
+     WORKFLOW
+====================================================== -->
+
+<section class="workflow-section">
+
+
+    <div class="section-heading">
+
+
+        <span>
+
+            How it works
+
+        </span>
+
+
+        <h2>
+
+            Simple hologram workflow
+
+        </h2>
+
+
+    </div>
+
+
+
+    <div class="workflow">
+
+
+
+        <div class="workflow-card">
+
+
+            <div class="step">
+
+                01
+
+            </div>
+
+
+            <h3>
+
+                Upload
+
+            </h3>
+
+
+            <p>
+
+                Select an image from your device
+                and upload it to HoloNova.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="workflow-card">
+
+
+            <div class="step">
+
+                02
+
+            </div>
+
+
+            <h3>
+
+                Convert
+
+            </h3>
+
+
+            <p>
+
+                HoloNova processes the image into
+                a 128 × 128 RGB LED matrix.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="workflow-card">
+
+
+            <div class="step">
+
+                03
+
+            </div>
+
+
+            <h3>
+
+                Preview
+
+            </h3>
+
+
+            <p>
+
+                Preview the generated hologram and
+                manage it from the web application.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ======================================================
+     TECHNOLOGY
+====================================================== -->
+
+<section class="system-section">
+
+
+    <div class="system-item">
+
+        <span class="status-dot"></span>
+
+        FastAPI
+
+    </div>
+
+
+    <div class="system-item">
+
+        <span class="status-dot"></span>
+
+        Supabase
+
+    </div>
+
+
+    <div class="system-item">
+
+        <span class="status-dot"></span>
+
+        RGB Processing
+
+    </div>
+
+
+    <div class="system-item">
+
+        <span class="status-dot"></span>
+
+        128 × 128 LED
+
+    </div>
+
+
+    <div class="system-item">
+
+        <span class="status-dot"></span>
+
+        ESP32 Integration
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ======================================================
+     CALL TO ACTION
+====================================================== -->
+
+<section class="cta">
+
+
+    <div class="cta-box">
+
+
+        <h2>
+
+            Create your hologram
+
+        </h2>
+
+
+        <p>
+
+            Upload an image and let HoloNova process it
+            into LED-ready hologram data.
+
+        </p>
+
+
+        <a
+            href="/upload-page"
+            class="cta-button"
+        >
+
+            Start Creating
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    HoloNova © 2026
+    &nbsp; • &nbsp;
+    3D Screenless Display System
+
+</footer>
+
+
+</body>
+
+</html>

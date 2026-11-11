@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create Hologram | HoloNova</title>
+
+
+    <style>
+
+        /* ==================================================
+           RESET
+        ================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #111111;
+        }
+
+
+        /* ==================================================
+           NAVBAR
+        ================================================== */
+
+        .navbar {
+            width: 100%;
+            min-height: 78px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 14px 7%;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            border-bottom: 1px solid #e8e8e8;
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        /* ==================================================
+           BRAND
+        ================================================== */
+
+        .brand {
+            display: flex;
+            align-items: center;
+
+            gap: 11px;
+
+            color: #111111;
+
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 48px;
+            height: 48px;
+
+            object-fit: contain;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 23px;
+            font-weight: 700;
+
+            letter-spacing: 0.3px;
+        }
+
+        .brand-small {
+            margin-top: 2px;
+
+            color: #777777;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* ==================================================
+           NAVIGATION
+        ================================================== */
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: inline-block;
+
+            padding: 10px 17px;
+
+            background: transparent;
+
+            color: #333333;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            border-radius: 7px;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+
+        /* BLACK ONLY WHEN CURSOR IS OVER ITEM */
+
+        .nav-links a:hover {
+            background: #111111;
+
+            color: #ffffff;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* CREATE IS ALSO NORMAL BY DEFAULT */
+
+        .create-link {
+            background: transparent !important;
+
+            color: #333333 !important;
+        }
+
+
+        /* CREATE BLACK ONLY ON HOVER */
+
+        .create-link:hover {
+            background: #111111 !important;
+
+            color: #ffffff !important;
+        }
+
+
+        /* ==================================================
+           MAIN PAGE
+        ================================================== */
+
+        .page {
+            width: 100%;
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 75px 30px 90px;
+        }
+
+
+        /* ==================================================
+           PAGE HEADER
+        ================================================== */
+
+        .page-header {
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+        .page-label {
+            display: inline-block;
+
+            padding: 7px 13px;
+
+            margin-bottom: 18px;
+
+            border: 1px solid #dddddd;
+
+            border-radius: 100px;
+
+            color: #777777;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            letter-spacing: 1px;
+        }
+
+        .page-header h1 {
+            margin-bottom: 12px;
+
+            color: #111111;
+
+            font-size: 46px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            color: #777777;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ==================================================
+           UPLOAD LAYOUT
+        ================================================== */
+
+        .upload-layout {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 25px;
+        }
+
+
+        /* ==================================================
+           CARDS
+        ================================================== */
+
+        .upload-card,
+        .preview-card {
+            padding: 32px;
+
+            background: #fafafa;
+
+            border: 1px solid #e5e5e5;
+
+            border-radius: 16px;
+        }
+
+        .card-title {
+            margin-bottom: 8px;
+
+            color: #111111;
+
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .card-subtitle {
+            margin-bottom: 25px;
+
+            color: #777777;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ==================================================
+           UPLOAD AREA
+        ================================================== */
+
+        .upload-area {
+            padding: 35px 20px;
+
+            background: #ffffff;
+
+            border: 1px dashed #bbbbbb;
+
+            border-radius: 12px;
+
+            text-align: center;
+        }
+
+        .upload-icon {
+            margin-bottom: 12px;
+
+            color: #111111;
+
+            font-size: 38px;
+
+            line-height: 1;
+        }
+
+        .upload-area strong {
+            display: block;
+
+            margin-bottom: 5px;
+
+            color: #111111;
+
+            font-size: 16px;
+        }
+
+        .upload-hint {
+            color: #999999;
+
+            font-size: 12px;
+        }
+
+
+        /* ==================================================
+           FILE INPUT
+        ================================================== */
+
+        #imageInput {
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 12px;
+
+            background: #ffffff;
+
+            border: 1px solid #dddddd;
+
+            border-radius: 8px;
+
+            color: #111111;
+
+            cursor: pointer;
+        }
+
+
+        /* ==================================================
+           GENERATE BUTTON
+        ================================================== */
+
+        #uploadBtn {
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 15px 20px;
+
+            background: #111111;
+
+            color: #ffffff;
+
+            border: none;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+        #uploadBtn:hover {
+            background: #333333;
+
+            transform: translateY(-1px);
+        }
+
+        #uploadBtn:disabled {
+            opacity: 0.5;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        /* ==================================================
+           STATUS
+        ================================================== */
+
+        #status {
+            min-height: 44px;
+
+            margin-top: 20px;
+
+            padding: 13px 15px;
+
+            background: #f2f2f2;
+
+            border-radius: 8px;
+
+            color: #555555;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            word-break: break-word;
+        }
+
+
+        /* ==================================================
+           INFO STRIP
+        ================================================== */
+
+        .info-strip {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-top: 22px;
+        }
+
+        .info-item {
+            padding: 15px 10px;
+
+            background: #ffffff;
+
+            border: 1px solid #e8e8e8;
+
+            border-radius: 9px;
+
+            text-align: center;
+        }
+
+        .info-label {
+            margin-bottom: 6px;
+
+            color: #999999;
+
+            font-size: 10px;
+
+            letter-spacing: 0.8px;
+
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            color: #111111;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        /* ==================================================
+           PREVIEW
+        ================================================== */
+
+        .preview-box {
+            min-height: 360px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 18px;
+
+            background: #ffffff;
+
+            border: 1px solid #e5e5e5;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+        }
+
+        #preview {
+            display: none;
+
+            width: 100%;
+
+            max-width: 360px;
+
+            max-height: 330px;
+
+            object-fit: contain;
+
+            border-radius: 8px;
+        }
+
+        .preview-placeholder {
+            padding: 30px;
+
+            color: #999999;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+        .preview-placeholder-icon {
+            margin-bottom: 12px;
+
+            color: #cccccc;
+
+            font-size: 35px;
+        }
+
+
+        /* ==================================================
+           FOOTER
+        ================================================== */
+
+        footer {
+            padding: 27px 20px;
+
+            border-top: 1px solid #eeeeee;
+
+            color: #888888;
+
+            text-align: center;
+
+            font-size: 12px;
+        }
+
+
+        /* ==================================================
+           MOBILE
+        ================================================== */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+                flex-direction: column;
+
+                gap: 17px;
+
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                justify-content: center;
+
+                flex-wrap: wrap;
+
+                gap: 5px;
+            }
+
+            .nav-links a {
+                padding: 8px 12px;
+            }
+
+            .page {
+                padding: 50px 18px 70px;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .upload-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .info-strip {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     NAVBAR
+====================================================== -->
+
+<nav class="navbar">
+
+
+    <!-- LOGO -->
+
+    <a
+        href="/"
+        class="brand"
+    >
+
+        <img
+            src="/static/images/holonova-logo.png"
+            alt="HoloNova Logo"
+            class="brand-logo"
+        >
+
+
+        <div class="brand-text">
+
+            <span class="brand-name">
+                HoloNova
+            </span>
+
+            <span class="brand-small">
+                3D Screenless Display
+            </span>
+
+        </div>
+
+    </a>
+
+
+
+    <!-- ==================================================
+         NAVIGATION
+
+         Home → Create → Dashboard → Gallery → About
+    ================================================== -->
+
+    <ul class="nav-links">
+
+
+        <li>
+
+            <a href="/">
+                Home
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a
+                href="/upload-page"
+                class="create-link"
+            >
+                Create
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="/gallery">
+                Gallery
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="/about">
+                About
+            </a>
+
+        </li>
+
+
+    </ul>
+
+
+</nav>
+
+
+
+<!-- ======================================================
+     MAIN PAGE
+====================================================== -->
+
+<main class="page">
+
+
+    <!-- PAGE TITLE -->
+
+    <div class="page-header">
+
+
+        <div class="page-label">
+
+            CREATE HOLOGRAM
+
+        </div>
+
+
+        <h1>
+
+            Upload an Image
+
+        </h1>
+
+
+        <p>
+
+            HoloNova will convert it into a
+            128 × 128 RGB LED frame.
+
+        </p>
+
+
+    </div>
+
+
+
+    <!-- ==================================================
+         UPLOAD + PREVIEW
+    ================================================== -->
+
+    <div class="upload-layout">
+
+
+
+        <!-- ==================================================
+             LEFT — UPLOAD
+        ================================================== -->
+
+        <section class="upload-card">
+
+
+            <h2 class="card-title">
+
+                Select Image
+
+            </h2>
+
+
+            <p class="card-subtitle">
+
+                Choose an image that you want to
+                convert into hologram data.
+
+            </p>
+
+
+
+            <div class="upload-area">
+
+
+                <div class="upload-icon">
+
+                    ↑
+
+                </div>
+
+
+                <strong>
+
+                    Choose an image
+
+                </strong>
+
+
+                <div class="upload-hint">
+
+                    JPG, JPEG, PNG, GIF or WEBP
+
+                </div>
+
+
+
+                <!-- DO NOT CHANGE THIS ID -->
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/*"
+                >
+
+
+            </div>
+
+
+
+            <!-- DO NOT CHANGE THIS ID -->
+
+            <button
+                id="uploadBtn"
+                type="button"
+            >
+
+                Generate Hologram
+
+            </button>
+
+
+
+            <!-- DO NOT CHANGE THIS ID -->
+
+            <div id="status">
+
+                Ready to upload.
+
+            </div>
+
+
+
+            <!-- INFORMATION -->
+
+            <div class="info-strip">
+
+
+                <div class="info-item">
+
+                    <div class="info-label">
+                        Matrix
+                    </div>
+
+                    <div class="info-value">
+                        128 × 128
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-label">
+                        Output
+                    </div>
+
+                    <div class="info-value">
+                        RGB
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-label">
+                        Storage
+                    </div>
+
+                    <div class="info-value">
+                        Supabase
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ==================================================
+             RIGHT — IMAGE PREVIEW
+        ================================================== -->
+
+        <section class="preview-card">
+
+
+            <h2 class="card-title">
+
+                Image Preview
+
+            </h2>
+
+
+            <p class="card-subtitle">
+
+                Preview the selected image before
+                generating the hologram.
+
+            </p>
+
+
+
+            <div class="preview-box">
+
+
+                <!-- DO NOT CHANGE THIS ID -->
+
+                <img
+                    id="preview"
+                    alt="Selected Image Preview"
+                >
+
+
+
+                <div
+                    class="preview-placeholder"
+                    id="previewPlaceholder"
+                >
+
+
+                    <div class="preview-placeholder-icon">
+
+                        □
+
+                    </div>
+
+
+                    Select an image to preview it here.
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+</main>
+
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    HoloNova © 2026
+    &nbsp; • &nbsp;
+    3D Screenless Display System
+
+</footer>
+
+
+
+<!-- ======================================================
+     YOUR EXISTING UPLOAD JAVASCRIPT
+====================================================== -->
+
+<script src="/static/js/upload.js"></script>
+
+
+
+<!-- ======================================================
+     PREVIEW HELPER
+====================================================== -->
+
+<script>
+
+    const uploadImageInput =
+        document.getElementById(
+            "imageInput"
+        );
+
+
+    const previewPlaceholder =
+        document.getElementById(
+            "previewPlaceholder"
+        );
+
+
+    const uploadPreview =
+        document.getElementById(
+            "preview"
+        );
+
+
+    uploadImageInput.addEventListener(
+        "change",
+        function () {
+
+
+            if (
+                uploadImageInput.files &&
+                uploadImageInput.files[0]
+            ) {
+
+
+                previewPlaceholder.style.display =
+                    "none";
+
+
+                uploadPreview.style.display =
+                    "block";
+
+
+            }
+
+
+            else {
+
+
+                previewPlaceholder.style.display =
+                    "block";
+
+
+                uploadPreview.style.display =
+                    "none";
+
+
+            }
+
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

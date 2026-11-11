@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HoloNova Control Center</title>
+
+<style>
+
+/* ==========================================================
+RESET
+========================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: #111111;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* ==========================================================
+NAVBAR
+========================================================== */
+
+.navbar {
+    width: 100%;
+    min-height: 78px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px 7%;
+
+    background: rgba(255,255,255,0.96);
+
+    border-bottom: 1px solid #e8e8e8;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+}
+
+
+/* ==========================================================
+BRAND
+========================================================== */
+
+.brand {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    color: #111111;
+
+    text-decoration: none;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+
+    object-fit: contain;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-size: 23px;
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+}
+
+.brand-small {
+    margin-top: 2px;
+
+    color: #777777;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+/* ==========================================================
+NAVIGATION
+========================================================== */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    display: inline-block;
+
+    padding: 10px 17px;
+
+    background: transparent;
+
+    color: #333333;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    border-radius: 7px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* BLACK ONLY ON HOVER */
+
+.nav-links a:hover {
+    background: #111111;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================================
+MAIN CONTAINER
+========================================================== */
+
+.container {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding: 65px 30px 80px;
+}
+
+
+/* ==========================================================
+TITLE
+========================================================== */
+
+.dashboard-header {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+.dashboard-label {
+    display: inline-block;
+
+    padding: 7px 13px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 100px;
+
+    color: #777777;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 1px;
+}
+
+.dashboard-title {
+    margin: 0 0 10px;
+
+    color: #111111;
+
+    font-size: 45px;
+
+    font-weight: 700;
+}
+
+.subtitle {
+    margin: 0;
+
+    color: #777777;
+
+    font-size: 15px;
+}
+
+
+/* ==========================================================
+STAT CARDS
+========================================================== */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 35px;
+}
+
+.card {
+    padding: 25px;
+
+    background: #fafafa;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 14px;
+
+    text-align: center;
+
+    transition: 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+
+    border-color: #cccccc;
+}
+
+.card h2 {
+    margin: 0 0 14px;
+
+    color: #777777;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.card h1 {
+    margin: 0;
+
+    color: #111111;
+
+    font-size: 29px;
+}
+
+
+/* ==========================================================
+SECTIONS
+========================================================== */
+
+.section {
+    padding: 30px;
+
+    margin-bottom: 25px;
+
+    background: #fafafa;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 16px;
+}
+
+.section-title {
+    margin-top: 0;
+    margin-bottom: 25px;
+
+    color: #111111;
+
+    font-size: 21px;
+}
+
+
+/* ==========================================================
+UPLOAD SECTION
+========================================================== */
+
+.upload-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 25px;
+}
+
+.upload-box {
+    padding: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 12px;
+}
+
+.upload-box h3 {
+    margin-top: 0;
+
+    color: #111111;
+}
+
+.upload-description {
+    color: #777777;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.upload-box input {
+    width: 100%;
+
+    padding: 12px;
+
+    margin: 15px 0;
+
+    background: #ffffff;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 8px;
+
+    color: #111111;
+}
+
+.upload-btn {
+    width: 100%;
+
+    padding: 13px 20px;
+
+    background: #111111;
+
+    color: #ffffff;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.upload-btn:hover {
+    background: #333333;
+
+    transform: translateY(-1px);
+}
+
+.upload-btn:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+#uploadStatus {
+    margin-top: 18px;
+
+    padding: 12px;
+
+    background: #f5f5f5;
+
+    color: #666666;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+IMAGE PREVIEW
+========================================================== */
+
+.preview-box {
+    min-height: 380px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+#selectedPreview {
+    display: none;
+
+    max-width: 100%;
+    max-height: 350px;
+
+    object-fit: contain;
+
+    border-radius: 8px;
+}
+
+#previewPlaceholder {
+    color: #999999;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+
+/* ==========================================================
+LED CANVAS
+========================================================== */
+
+#ledCanvas {
+    width: 350px;
+    height: 350px;
+
+    max-width: 100%;
+
+    background: #000000;
+
+    border: 5px solid #111111;
+
+    border-radius: 10px;
+
+    image-rendering: pixelated;
+}
+
+
+/* ==========================================================
+PREVIEW INFO
+========================================================== */
+
+.preview-info {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+.preview-info > div {
+    padding: 17px;
+
+    background: #ffffff;
+
+    border: 1px solid #e7e7e7;
+
+    border-radius: 9px;
+}
+
+.preview-label {
+    color: #999999;
+
+    font-size: 10px;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+}
+
+.preview-value {
+    margin-top: 7px;
+
+    color: #111111;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    word-break: break-word;
+}
+
+
+/* ==========================================================
+SYSTEM STATUS
+========================================================== */
+
+.system-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+.system-item {
+    padding: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 10px;
+}
+
+.system-item h3 {
+    margin-top: 0;
+
+    color: #111111;
+
+    font-size: 15px;
+}
+
+.online {
+    color: #198754;
+
+    font-weight: 700;
+
+    font-size: 13px;
+}
+
+.offline {
+    color: #a16207;
+
+    font-weight: 700;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+TABLE
+========================================================== */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 15px;
+
+    border-bottom: 1px solid #eeeeee;
+
+    text-align: center;
+
+    font-size: 13px;
+}
+
+th {
+    background: #111111;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    letter-spacing: 0.3px;
+}
+
+td {
+    color: #555555;
+}
+
+.status-completed {
+    color: #198754;
+
+    font-weight: 700;
+}
+
+.status-failed {
+    color: #dc2626;
+
+    font-weight: 700;
+}
+
+.status-processing {
+    color: #a16207;
+
+    font-weight: 700;
+}
+
+.view-btn {
+    display: inline-block;
+
+    padding: 8px 14px;
+
+    background: #111111;
+
+    color: #ffffff;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.view-btn:hover {
+    background: #333333;
+}
+
+
+/* ==========================================================
+JSON DATA
+========================================================== */
+
+pre {
+    padding: 18px;
+
+    margin: 0;
+
+    background: #111111;
+
+    color: #eeeeee;
+
+    border-radius: 10px;
+
+    overflow: auto;
+
+    max-height: 300px;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+FOOTER
+========================================================== */
+
+footer {
+    padding: 27px 20px;
+
+    border-top: 1px solid #eeeeee;
+
+    color: #888888;
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+
+/* ==========================================================
+RESPONSIVE
+========================================================== */
+
+@media(max-width: 950px) {
+
+    .cards {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .system-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .preview-info {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media(max-width: 800px) {
+
+    .navbar {
+        flex-direction: column;
+
+        gap: 17px;
+
+        padding: 15px 20px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 5px;
+    }
+
+    .nav-links a {
+        padding: 8px 12px;
+    }
+
+    .container {
+        padding: 45px 18px 60px;
+    }
+
+    .dashboard-title {
+        font-size: 35px;
+    }
+
+    .upload-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media(max-width: 550px) {
+
+    .cards,
+    .system-grid,
+    .preview-info {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 20px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+NAVBAR
+====================================================== -->
+
+<nav class="navbar">
+
+
+<a
+    href="/"
+    class="brand"
+>
+
+    <img
+        src="/static/images/holonova-logo.png"
+        alt="HoloNova Logo"
+        class="brand-logo"
+    >
+
+
+    <div class="brand-text">
+
+        <span class="brand-name">
+            HoloNova
+        </span>
+
+        <span class="brand-small">
+            3D Screenless Display
+        </span>
+
+    </div>
+
+</a>
+
+
+
+<!-- SAME NAVBAR AS HOME + CREATE -->
+
+<ul class="nav-links">
+
+
+<li>
+
+<a href="/">
+Home
+</a>
+
+</li>
+
+
+<li>
+
+<a href="/upload-page">
+Create
+</a>
+
+</li>
+
+
+<li>
+
+<a href="/dashboard">
+Dashboard
+</a>
+
+</li>
+
+
+<li>
+
+<a href="/gallery">
+Gallery
+</a>
+
+</li>
+
+
+<li>
+
+<a href="/about">
+About
+</a>
+
+</li>
+
+
+</ul>
+
+
+</nav>
+
+
+
+<!-- ======================================================
+MAIN
+====================================================== -->
+
+<div class="container">
+
+
+<div class="dashboard-header">
+
+
+<div class="dashboard-label">
+CONTROL CENTER
+</div>
+
+
+<h1 class="dashboard-title">
+HoloNova Dashboard
+</h1>
+
+
+<p class="subtitle">
+3D Screenless Display System
+</p>
+
+
+</div>
+
+
+
+<!-- ======================================================
+STATISTICS
+====================================================== -->
+
+<div class="cards">
+
+
+<div class="card">
+
+<h2>Total Holograms</h2>
+
+<h1>
+{{ stats.total_holograms }}
+</h1>
+
+</div>
+
+
+<div class="card">
+
+<h2>Total Uploads</h2>
+
+<h1>
+{{ stats.total_uploads }}
+</h1>
+
+</div>
+
+
+<div class="card">
+
+<h2>Cloud Storage</h2>
+
+<h1>
+{{ stats.cloud_storage }}
+</h1>
+
+</div>
+
+
+<div class="card">
+
+<h2>ESP32 Status</h2>
+
+<h1>
+{{ stats.esp32_status }}
+</h1>
+
+</div>
+
+
+</div>
+
+
+
+<!-- ======================================================
+CREATE HOLOGRAM
+====================================================== -->
+
+<div
+    class="section"
+    id="uploadSection"
+>
+
+
+<h2 class="section-title">
+Create New Hologram
+</h2>
+
+
+<div class="upload-grid">
+
+
+
+<!-- UPLOAD -->
+
+<div class="upload-box">
+
+
+<h3>
+Upload Image
+</h3>
+
+
+<p class="upload-description">
+
+Select an image and HoloNova will convert it
+into a 128 × 128 RGB LED matrix.
+
+</p>
+
+
+<input
+    type="file"
+    id="imageInput"
+    accept="image/*"
+>
+
+
+<button
+    class="upload-btn"
+    id="uploadBtn"
+>
+
+Generate Hologram
+
+</button>
+
+
+<div id="uploadStatus">
+
+Ready to upload.
+
+</div>
+
+
+</div>
+
+
+
+<!-- SELECTED IMAGE -->
+
+<div>
+
+
+<h3>
+Selected Image
+</h3>
+
+
+<div class="preview-box">
+
+
+<img
+    id="selectedPreview"
+    alt="Preview"
+>
+
+
+<div id="previewPlaceholder">
+
+Select an image to preview it here.
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- ======================================================
+HOLOGRAM PREVIEW
+====================================================== -->
+
+<div
+    class="section"
+    id="previewSection"
+>
+
+
+<h2 class="section-title">
+Latest Hologram Preview
+</h2>
+
+
+<div class="preview-box">
+
+
+<canvas
+    id="ledCanvas"
+    width="128"
+    height="128"
+></canvas>
+
+
+</div>
+
+
+
+<div class="preview-info">
+
+
+<div>
+
+<div class="preview-label">
+Hologram ID
+</div>
+
+<div
+    class="preview-value"
+    id="latestHologramId"
+>
+No hologram generated yet
+</div>
+
+</div>
+
+
+
+<div>
+
+<div class="preview-label">
+Resolution
+</div>
+
+<div
+    class="preview-value"
+    id="latestResolution"
+>
+128 × 128
+</div>
+
+</div>
+
+
+
+<div>
+
+<div class="preview-label">
+Frames
+</div>
+
+<div
+    class="preview-value"
+    id="latestFrames"
+>
+-
+</div>
+
+</div>
+
+
+
+<div>
+
+<div class="preview-label">
+Status
+</div>
+
+<div
+    class="preview-value"
+    id="latestStatus"
+>
+Waiting
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- ======================================================
+SYSTEM STATUS
+====================================================== -->
+
+<div class="section">
+
+
+<h2 class="section-title">
+System Status
+</h2>
+
+
+<div class="system-grid">
+
+
+<div class="system-item">
+
+<h3>
+FastAPI Backend
+</h3>
+
+<p class="online">
+● Online
+</p>
+
+</div>
+
+
+<div class="system-item">
+
+<h3>
+Supabase
+</h3>
+
+<p class="online">
+● Connected
+</p>
+
+</div>
+
+
+<div class="system-item">
+
+<h3>
+LED Processing
+</h3>
+
+<p class="online">
+● Ready
+</p>
+
+</div>
+
+
+<div class="system-item">
+
+<h3>
+ESP32
+</h3>
+
+<p class="offline">
+● {{ stats.esp32_status }}
+</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- ======================================================
+RECENT HOLOGRAMS
+====================================================== -->
+
+<div
+    class="section"
+    id="recentSection"
+>
+
+
+<h2 class="section-title">
+Recent Holograms
+</h2>
+
+
+<div class="table-wrapper">
+
+
+<table>
+
+
+<thead>
+
+
+<tr>
+
+<th>Image</th>
+
+<th>Resolution</th>
+
+<th>Frames</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody>
+
+
+{% for holo in holograms %}
+
+
+<tr>
+
+
+<td>
+{{ holo.image_name }}
+</td>
+
+
+<td>
+{{ holo.width }} × {{ holo.height }}
+</td>
+
+
+<td>
+{{ holo.total_frames }}
+</td>
+
+
+<td>
+
+
+{% if holo.status == "completed" %}
+
+
+<span class="status-completed">
+Completed
+</span>
+
+
+{% elif holo.status == "failed" %}
+
+
+<span class="status-failed">
+Failed
+</span>
+
+
+{% else %}
+
+
+<span class="status-processing">
+{{ holo.status }}
+</span>
+
+
+{% endif %}
+
+
+</td>
+
+
+
+<td>
+
+
+{% if holo.status == "completed" %}
+
+
+<a
+    class="view-btn"
+    href="/hologram/{{ holo.id }}"
+>
+View
+</a>
+
+
+{% else %}
+
+
+<span style="color:#999999;">
+Unavailable
+</span>
+
+
+{% endif %}
+
+
+</td>
+
+
+</tr>
+
+
+
+{% else %}
+
+
+<tr>
+
+
+<td
+    colspan="5"
+    style="
+        color:#999999;
+        padding:30px;
+    "
+>
+
+No holograms available.
+
+</td>
+
+
+</tr>
+
+
+{% endfor %}
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- ======================================================
+LED DATA
+====================================================== -->
+
+<div class="section">
+
+
+<h2 class="section-title">
+Latest LED Frame Data
+</h2>
+
+
+<pre id="ledJson">Generate a hologram to view RGB LED data.</pre>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- ======================================================
+FOOTER
+====================================================== -->
+
+<footer>
+
+HoloNova © 2026
+&nbsp; • &nbsp;
+3D Screenless Display System
+
+</footer>
+
+
+
+<!-- ======================================================
+JAVASCRIPT
+====================================================== -->
+
+<script>
+
+
+/* =========================================================
+ELEMENTS
+========================================================= */
+
+const imageInput =
+    document.getElementById("imageInput");
+
+const uploadBtn =
+    document.getElementById("uploadBtn");
+
+const uploadStatus =
+    document.getElementById("uploadStatus");
+
+const selectedPreview =
+    document.getElementById("selectedPreview");
+
+const previewPlaceholder =
+    document.getElementById("previewPlaceholder");
+
+const canvas =
+    document.getElementById("ledCanvas");
+
+const ctx =
+    canvas.getContext("2d");
+
+const ledJson =
+    document.getElementById("ledJson");
+
+
+/* =========================================================
+IMAGE SELECTION
+========================================================= */
+
+imageInput.addEventListener(
+    "change",
+    function() {
+
+
+        const file =
+            imageInput.files[0];
+
+
+        if (!file) {
+
+            selectedPreview.style.display =
+                "none";
+
+            previewPlaceholder.style.display =
+                "block";
+
+            return;
+        }
+
+
+        const imageURL =
+            URL.createObjectURL(file);
+
+
+        selectedPreview.src =
+            imageURL;
+
+
+        selectedPreview.style.display =
+            "block";
+
+
+        previewPlaceholder.style.display =
+            "none";
+
+
+        uploadStatus.textContent =
+            `Selected: ${file.name}`;
+
+    }
+);
+
+
+/* =========================================================
+UPLOAD
+========================================================= */
+
+uploadBtn.addEventListener(
+    "click",
+    async function() {
+
+
+        const file =
+            imageInput.files[0];
+
+
+        if (!file) {
+
+            alert(
+                "Please select an image first."
+            );
+
+            return;
+        }
+
+
+        uploadBtn.disabled =
+            true;
+
+
+        uploadStatus.innerHTML =
+            "Uploading and generating hologram...";
+
+
+        const formData =
+            new FormData();
+
+
+        formData.append(
+            "file",
+            file
+        );
+
+
+        try {
+
+
+            const response =
+                await fetch(
+                    "/upload",
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            console.log(
+                "UPLOAD RESULT:",
+                result
+            );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    result.detail ||
+                    "Upload failed"
+                );
+
+            }
+
+
+            if (
+                !result.success ||
+                !result.hologram_id
+            ) {
+
+                throw new Error(
+                    "Invalid upload response"
+                );
+
+            }
+
+
+            /* UPDATE INFORMATION */
+
+            document.getElementById(
+                "latestHologramId"
+            ).textContent =
+                result.hologram_id;
+
+
+            document.getElementById(
+                "latestResolution"
+            ).textContent =
+                `${result.width} × ${result.height}`;
+
+
+            document.getElementById(
+                "latestFrames"
+            ).textContent =
+                result.total_frames;
+
+
+            document.getElementById(
+                "latestStatus"
+            ).textContent =
+                result.status;
+
+
+            uploadStatus.innerHTML =
+                "✓ Hologram created successfully";
+
+
+            /* LOAD LED FRAME */
+
+            await loadLEDFrame(
+                result.hologram_id
+            );
+
+
+            /* SCROLL TO PREVIEW */
+
+            document.getElementById(
+                "previewSection"
+            ).scrollIntoView(
+                {
+                    behavior: "smooth"
+                }
+            );
+
+
+        }
+
+        catch(error) {
+
+
+            console.error(
+                error
+            );
+
+
+            uploadStatus.innerHTML =
+                `Error: ${error.message}`;
+
+
+        }
+
+        finally {
+
+
+            uploadBtn.disabled =
+                false;
+
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+LOAD LED FRAME
+========================================================= */
+
+async function loadLEDFrame(
+    hologramId
+) {
+
+
+    const response =
+        await fetch(
+            `/led-frame/${hologramId}`
+        );
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            "Unable to load LED frame"
+        );
+
+    }
+
+
+    const result =
+        await response.json();
+
+
+    console.log(
+        "LED RESULT:",
+        result
+    );
+
+
+    if (
+        !Array.isArray(result) ||
+        result.length === 0
+    ) {
+
+        throw new Error(
+            "No LED frame found"
+        );
+
+    }
+
+
+    const frame =
+        result[0];
+
+
+    const ledData =
+        frame.led_data;
+
+
+    if (
+        !Array.isArray(ledData) ||
+        ledData.length === 0
+    ) {
+
+        throw new Error(
+            "LED data is empty"
+        );
+
+    }
+
+
+    drawLEDFrame(
+        ledData
+    );
+
+
+    ledJson.textContent =
+        JSON.stringify(
+            ledData,
+            null,
+            2
+        );
+
+}
+
+
+/* =========================================================
+DRAW LED FRAME
+========================================================= */
+
+function drawLEDFrame(
+    ledData
+) {
+
+
+    const height =
+        ledData.length;
+
+
+    const width =
+        ledData[0].length;
+
+
+    canvas.width =
+        width;
+
+
+    canvas.height =
+        height;
+
+
+    const imageData =
+        ctx.createImageData(
+            width,
+            height
+        );
+
+
+    let index = 0;
+
+
+    for (
+        let y = 0;
+        y < height;
+        y++
+    ) {
+
+
+        for (
+            let x = 0;
+            x < width;
+            x++
+        ) {
+
+
+            const pixel =
+                ledData[y][x];
+
+
+            imageData.data[index++] =
+                Number(pixel[0]) || 0;
+
+
+            imageData.data[index++] =
+                Number(pixel[1]) || 0;
+
+
+            imageData.data[index++] =
+                Number(pixel[2]) || 0;
+
+
+            imageData.data[index++] =
+                255;
+
+        }
+
+    }
+
+
+    ctx.putImageData(
+        imageData,
+        0,
+        0
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

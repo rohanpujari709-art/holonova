@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HoloNova Gallery</title>
+
+    <style>
+
+        /* ==================================================
+           RESET
+        ================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #111111;
+        }
+
+
+        /* ==================================================
+           NAVBAR
+        ================================================== */
+
+        .navbar {
+            width: 100%;
+            min-height: 78px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 14px 7%;
+
+            background: rgba(255,255,255,0.96);
+
+            border-bottom: 1px solid #e8e8e8;
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        /* ==================================================
+           BRAND
+        ================================================== */
+
+        .brand {
+            display: flex;
+            align-items: center;
+
+            gap: 11px;
+
+            color: #111111;
+
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 48px;
+            height: 48px;
+
+            object-fit: contain;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 23px;
+            font-weight: 700;
+
+            letter-spacing: 0.3px;
+        }
+
+        .brand-small {
+            margin-top: 2px;
+
+            color: #777777;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* ==================================================
+           NAVIGATION
+        ================================================== */
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: inline-block;
+
+            padding: 10px 17px;
+
+            background: transparent;
+
+            color: #333333;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            border-radius: 7px;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            background: #111111;
+
+            color: #ffffff;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* ==================================================
+           PAGE
+        ================================================== */
+
+        .container {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 70px 30px 90px;
+        }
+
+        .page-header {
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+        .page-label {
+            display: inline-block;
+
+            padding: 7px 13px;
+
+            margin-bottom: 16px;
+
+            border: 1px solid #dddddd;
+
+            border-radius: 100px;
+
+            color: #777777;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            letter-spacing: 1px;
+        }
+
+        .title {
+            margin-bottom: 10px;
+
+            color: #111111;
+
+            font-size: 44px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #777777;
+
+            font-size: 15px;
+        }
+
+
+        /* ==================================================
+           GALLERY GRID
+        ================================================== */
+
+        .gallery-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 20px;
+        }
+
+
+        /* ==================================================
+           HOLOGRAM CARD
+        ================================================== */
+
+        .hologram-card {
+            padding: 25px;
+
+            background: #fafafa;
+
+            border: 1px solid #e5e5e5;
+
+            border-radius: 14px;
+
+            transition: 0.2s ease;
+        }
+
+        .hologram-card:hover {
+            transform: translateY(-3px);
+
+            border-color: #cccccc;
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+        }
+
+        .hologram-card h3 {
+            color: #111111;
+
+            font-size: 18px;
+
+            word-break: break-word;
+        }
+
+        .card-number {
+            color: #aaaaaa;
+
+            font-size: 11px;
+        }
+
+        .hologram-card p {
+            margin: 8px 0;
+
+            color: #666666;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+        .label {
+            color: #999999;
+        }
+
+
+        /* ==================================================
+           STATUS
+        ================================================== */
+
+        .status-completed {
+            color: #198754;
+            font-weight: 700;
+        }
+
+        .status-failed {
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .status-processing {
+            color: #a16207;
+            font-weight: 700;
+        }
+
+
+        /* ==================================================
+           VIEW BUTTON
+        ================================================== */
+
+        .view-btn {
+            display: inline-block;
+
+            margin-top: 16px;
+
+            padding: 10px 18px;
+
+            background: #111111;
+
+            color: #ffffff;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: 0.2s ease;
+        }
+
+        .view-btn:hover {
+            background: #333333;
+
+            transform: translateY(-1px);
+        }
+
+        .unavailable {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            color: #999999;
+
+            font-size: 13px;
+        }
+
+
+        /* ==================================================
+           LOADING / ERROR
+        ================================================== */
+
+        .message {
+            grid-column: 1 / -1;
+
+            padding: 40px;
+
+            text-align: center;
+
+            color: #777777;
+
+            background: #fafafa;
+
+            border: 1px solid #e5e5e5;
+
+            border-radius: 14px;
+        }
+
+        .error-message {
+            color: #dc2626;
+        }
+
+
+        /* ==================================================
+           FOOTER
+        ================================================== */
+
+        footer {
+            padding: 27px 20px;
+
+            border-top: 1px solid #eeeeee;
+
+            color: #888888;
+
+            text-align: center;
+
+            font-size: 12px;
+        }
+
+
+        /* ==================================================
+           MOBILE
+        ================================================== */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+                flex-direction: column;
+
+                gap: 17px;
+
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 5px;
+            }
+
+            .nav-links a {
+                padding: 8px 12px;
+            }
+
+            .container {
+                padding: 50px 18px 70px;
+            }
+
+            .title {
+                font-size: 35px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     NAVBAR
+====================================================== -->
+
+<nav class="navbar">
+
+
+    <a
+        href="/"
+        class="brand"
+    >
+
+        <img
+            src="/static/images/holonova-logo.png"
+            alt="HoloNova Logo"
+            class="brand-logo"
+        >
+
+
+        <div class="brand-text">
+
+            <span class="brand-name">
+                HoloNova
+            </span>
+
+            <span class="brand-small">
+                3D Screenless Display
+            </span>
+
+        </div>
+
+    </a>
+
+
+
+    <ul class="nav-links">
+
+
+        <li>
+            <a href="/">
+                Home
+            </a>
+        </li>
+
+
+        <li>
+            <a href="/upload-page">
+                Create
+            </a>
+        </li>
+
+
+        <li>
+            <a href="/dashboard">
+                Dashboard
+            </a>
+        </li>
+
+
+        <li>
+            <a href="/gallery">
+                Gallery
+            </a>
+        </li>
+
+
+        <li>
+            <a href="/about">
+                About
+            </a>
+        </li>
+
+
+    </ul>
+
+
+</nav>
+
+
+
+<!-- ======================================================
+     MAIN GALLERY
+====================================================== -->
+
+<main class="container">
+
+
+    <div class="page-header">
+
+
+        <div class="page-label">
+            HOLOGRAM LIBRARY
+        </div>
+
+
+        <h1 class="title">
+            Hologram Gallery
+        </h1>
+
+
+        <p class="subtitle">
+            View holograms generated using HoloNova.
+        </p>
+
+
+    </div>
+
+
+
+    <div
+        class="gallery-grid"
+        id="galleryGrid"
+    >
+
+        <div class="message">
+            Loading holograms...
+        </div>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    HoloNova © 2026
+    &nbsp; • &nbsp;
+    3D Screenless Display System
+
+</footer>
+
+
+
+<!-- ======================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+async function loadGallery() {
+
+    const grid =
+        document.getElementById(
+            "galleryGrid"
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/holograms"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load holograms"
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        const holograms =
+            result.holograms || [];
+
+
+        if (
+            holograms.length === 0
+        ) {
+
+            grid.innerHTML = `
+                <div class="message">
+                    No holograms found.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        grid.innerHTML =
+            "";
+
+
+        holograms.forEach(
+            (holo, index) => {
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "hologram-card";
+
+
+                let statusClass =
+                    "status-processing";
+
+
+                if (
+                    holo.status ===
+                    "completed"
+                ) {
+
+                    statusClass =
+                        "status-completed";
+
+                }
+
+                else if (
+                    holo.status ===
+                    "failed"
+                ) {
+
+                    statusClass =
+                        "status-failed";
+
+                }
+
+
+                card.innerHTML = `
+
+
+                    <div class="card-top">
+
+                        <h3>
+                            ${holo.image_name || "Hologram"}
+                        </h3>
+
+                        <span class="card-number">
+                            #${String(index + 1).padStart(2, "0")}
+                        </span>
+
+                    </div>
+
+
+                    <p>
+
+                        <span class="label">
+                            Resolution
+                        </span>
+
+                        <br>
+
+                        <strong>
+                            ${holo.width} × ${holo.height}
+                        </strong>
+
+                    </p>
+
+
+                    <p>
+
+                        <span class="label">
+                            Frames
+                        </span>
+
+                        <br>
+
+                        <strong>
+                            ${holo.total_frames}
+                        </strong>
+
+                    </p>
+
+
+                    <p>
+
+                        <span class="label">
+                            Status
+                        </span>
+
+                        <br>
+
+                        <span class="${statusClass}">
+                            ${holo.status}
+                        </span>
+
+                    </p>
+
+
+                    ${
+                        holo.status ===
+                        "completed"
+
+                        ?
+
+                        `
+                        <a
+                            class="view-btn"
+                            href="/hologram/${holo.id}"
+                        >
+                            View Hologram
+                        </a>
+                        `
+
+                        :
+
+                        `
+                        <span class="unavailable">
+                            Preview unavailable
+                        </span>
+                        `
+                    }
+
+
+                `;
+
+
+                grid.appendChild(
+                    card
+                );
+
+
+            }
+        );
+
+
+    }
+
+    catch(error) {
+
+
+        console.error(
+            error
+        );
+
+
+        grid.innerHTML = `
+
+            <div class="message error-message">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+loadGallery();
+
+</script>
+
+
+</body>
+
+</html>

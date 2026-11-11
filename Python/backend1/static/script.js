@@ -1,0 +1,1 @@
+console.log("HoloNova Frontend Loaded Successfully!");

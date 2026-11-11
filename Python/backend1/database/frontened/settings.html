@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Settings - HoloNova</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<nav>
+<div class="logo">HoloNova</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="dashboard.html">Dashboard</a></li>
+<li><a href="upload.html">Upload</a></li>
+<li><a href="gallery.html">Gallery</a></li>
+</ul>
+</nav>
+
+<div class="settings-container">
+
+<h1>Settings</h1>
+
+<div class="settings-grid">
+
+<div class="settings-card">
+
+<h2>📡 ESP32 Device</h2>
+
+<label>IP Address</label>
+
+<input type="text" placeholder="192.168.1.100">
+
+<label>Port</label>
+
+<input type="text" placeholder="80">
+
+<button>Connect</button>
+
+</div>
+
+<div class="settings-card">
+
+<h2>☁ Cloud</h2>
+
+<p>Supabase Status</p>
+
+<span class="status connected">Connected</span>
+
+</div>
+
+<div class="settings-card">
+
+<h2>⚙ Display Settings</h2>
+
+<label>LED Resolution</label>
+
+<select>
+<option>64 × 64</option>
+<option>128 × 64</option>
+<option>256 × 64</option>
+</select>
+
+<label>Brightness</label>
+
+<input type="range" min="10" max="100" value="70">
+
+</div>
+
+<div class="settings-card">
+
+<h2>👤 Account</h2>
+
+<p>User : Admin</p>
+
+<p>Version : 1.0</p>
+
+<button>Logout</button>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

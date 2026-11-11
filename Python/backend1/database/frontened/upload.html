@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload - HoloNova</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            HoloNova
+        </div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+    </nav>
+
+    <!-- Upload Section -->
+    <div class="upload-container">
+
+        <h1>Upload Image or Video</h1>
+
+        <div class="upload-box">
+
+            <input type="file" id="fileInput" accept="image/*,video/*">
+
+            <p>Select an image or video for hologram generation.</p>
+
+            <button id="previewBtn">
+                Preview
+            </button>
+
+        </div>
+
+        <div id="previewArea"></div>
+
+    </div>
+
+    <!-- Upload Logic -->
+    <script src="js/upload.js"></script>
+
+</body>
+
+</html>
